@@ -269,6 +269,7 @@ button.kanban-plugin__search-cancel-button .kanban-plugin__icon {
 
 .kanban-plugin__board {
   display: flex;
+  min-height: 0;
   width: 100%;
   height: 100%;
 
@@ -279,6 +280,29 @@ button.kanban-plugin__search-cancel-button .kanban-plugin__icon {
     padding: 1rem;
     width: fit-content;
     height: 100%;
+  }
+
+  &.kanban-plugin__horizontal {
+    > div {
+      align-items: stretch;
+      box-sizing: border-box;
+      min-height: 0;
+    }
+
+    .kanban-plugin__lane-wrapper {
+      height: 100%;
+      max-height: none;
+      min-height: 0;
+    }
+
+    .kanban-plugin__lane {
+      min-height: 0;
+    }
+
+    .kanban-plugin__lane-items {
+      flex: 1 1 auto;
+      min-height: 0;
+    }
   }
 
   &.kanban-plugin__vertical {
