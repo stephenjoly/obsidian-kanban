@@ -140,7 +140,9 @@ export const Kanban = ({ view, stateManager }: KanbanProps) => {
       const styles = win?.getComputedStyle(boardContent);
       const paddingTop = Number.parseFloat(styles?.paddingTop ?? '') || 0;
       const paddingBottom = Number.parseFloat(styles?.paddingBottom ?? '') || 0;
-      const availableHeight = Math.max(0, board.clientHeight - paddingTop - paddingBottom);
+      const paneBottom = view.contentEl.getBoundingClientRect().bottom;
+      const laneTop = boardContent.getBoundingClientRect().top + paddingTop;
+      const availableHeight = Math.max(0, paneBottom - laneTop - paddingBottom);
 
       board.style.setProperty('--kanban-lane-max-height', `${availableHeight}px`);
     };
@@ -149,12 +151,13 @@ export const Kanban = ({ view, stateManager }: KanbanProps) => {
 
     const observer = new ResizeObserver(updateLaneMaxHeight);
     observer.observe(board);
+    observer.observe(view.contentEl);
 
     return () => {
       observer.disconnect();
       board.style.removeProperty('--kanban-lane-max-height');
     };
-  }, [boardView]);
+  }, [boardData?.id, boardView, view]);
 
   useEffect(() => {
     const win = view.getWindow();
