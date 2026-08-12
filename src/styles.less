@@ -284,23 +284,22 @@ button.kanban-plugin__search-cancel-button .kanban-plugin__icon {
 
   &.kanban-plugin__horizontal {
     > div {
-      align-items: stretch;
       box-sizing: border-box;
       min-height: 0;
     }
 
     .kanban-plugin__lane-wrapper {
-      height: 100%;
-      max-height: none;
+      height: auto;
+      max-height: 100%;
       min-height: 0;
     }
 
     .kanban-plugin__lane {
+      max-height: 100%;
       min-height: 0;
     }
 
     .kanban-plugin__lane-items {
-      flex: 1 1 auto;
       min-height: 0;
     }
   }
